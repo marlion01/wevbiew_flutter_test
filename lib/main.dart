@@ -1,13 +1,15 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() => runApp(MyApp());
-var controller = WebViewController()
+final controller = WebViewController()
 ..setJavaScriptMode(JavaScriptMode.unrestricted)
-..loadRequest(Uri.parse('https://flutter.dev'));
+..loadRequest(Uri.parse('https://my.ait.tokushima-u.ac.jp/portal/'));
 class MyApp extends StatelessWidget {
+  void _submit_ID(){
+    controller..runJavaScript("document.getElementById('username').value= '\(dataManager.cAccount)'");
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,10 +19,13 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Webテスト'),
+          title: Text("WEBテスト"),
         ),
         body: WebViewWidget(controller: controller),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _submit_ID,
+        ),
         ),
       );
-  }
+    }
   }
