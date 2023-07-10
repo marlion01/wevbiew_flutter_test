@@ -7,7 +7,8 @@ final controller = WebViewController()
 ..loadRequest(Uri.parse('https://my.ait.tokushima-u.ac.jp/portal/'));
 class MyApp extends StatelessWidget {
   void _submit_ID(){
-    controller..runJavaScript("document.getElementById('username').value= 'ABC123'");
+    controller..runJavaScript("document.getElementById('username').value= 'ABC123';"//;←必要
+                             "document.getElementById('password').value=''");
   }
 
   @override
